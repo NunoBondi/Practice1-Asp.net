@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+    int id = int.Parse(Request["id"]);
+    Tarea1.Artista Model = Tarea1.Global.Artistas.Where(x => x.Id == id).FirstOrDefault();
+}
+
+@RenderPage("Index.cshtml");
+
+<h2>@Model.NombreCompleto - @Tarea1.Global.Canciones.Where(x => x.Id ==id).Count() Canciones</h2>
+
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Fecha de Nacimiento</th>
+    </tr>
+
+    @foreach(var item in Tarea1.Global.Artistas.Where(x => x.Id == id)) { 
+    <tr>
+        <td>
+             @item.NombreCompleto
+        </td>
+        <td>
+             @item.FechaNacimiento
+        </td>
+    </tr>
+    };
+</table>

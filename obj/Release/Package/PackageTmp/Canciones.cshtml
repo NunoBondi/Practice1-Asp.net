@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+@RenderPage("Index.cshtml")
+
+<h2 class="container pt-2 pb-2">@Tarea1.Global.Canciones.Count() Canciones <a title="Agregar Cancion" class="btn btn-primary" href="~/CreateCanciones.aspx">+</a></h2>
+
+<div class="container-sm border">
+    <table class="table ">
+        <tr class=" bg-primary text-white">
+            <th>Id</th>
+
+            <th>Nombre</th>
+
+            <th>Duracion</th>
+            <th>Genero</th>
+            <th>Album</th>
+        </tr>
+
+        @foreach (var item in Tarea1.Global.Canciones)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.NombreCancion</td>
+                <td>@item.Duracion</td>
+                <td>@item.Genero</td>
+                <td>
+                    @Tarea1.Global.Albumes.FirstOrDefault(album => album.Id == item.AlbumId).Nombre
+                </td>
+                <td><a class="btn btn-info" href="DetalleCancion?id=@item.Id">Detalle</a></td>
+            </tr>
+        }
+    </table>
+</div>

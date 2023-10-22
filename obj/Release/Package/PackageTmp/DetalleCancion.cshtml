@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+    int id = int.Parse(Request["id"]);
+    Tarea1.Cancion Model = Tarea1.Global.Canciones.Where(x => x.Id == id).FirstOrDefault();
+
+    Tarea1.Artista artistaA = Tarea1.Global.Artistas.Where(x => x.Id == id).FirstOrDefault();
+}
+
+@RenderPage("Index.cshtml");
+
+<h2>@Model.NombreCancion - @artistaA.NombreCompleto </h2>
+
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Genero</th>
+        <th>Duracion</th>
+        <th>Album</th>
+    </tr>
+
+    @foreach (var item in Tarea1.Global.Canciones.Where(x => x.Id == id))
+    {
+        <tr>
+            <td>
+                 @item.NombreCancion
+            </td>
+            <td>
+                 @item.Genero
+            </td>
+            <td>
+                 @item.Duracion
+            </td>
+            <td>
+                 @Tarea1.Global.Albumes.FirstOrDefault(album => album.Id == item.AlbumId).Nombre
+            </td>
+        </tr>
+    };
+</table>

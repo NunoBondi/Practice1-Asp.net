@@ -1,0 +1,31 @@
+﻿@{
+    Layout = null;
+
+}
+<link href="Content/bootstrap.min.css" rel="stylesheet" />
+@RenderPage("Index.cshtml")
+
+<h2 class="container pt-2 pb-2"  >@Tarea1.Global.Artistas.Count() Artistas <a class="btn btn-primary" href="~/CreateArtista.aspx">+</a></h2>
+
+<div class="container-sm border">
+    <table class="table ">
+        <tr class=" bg-primary text-white">
+            <th>Id</th>
+
+            <th>Nombre</th>
+
+            <th>Fecha de Nacimiento</th>
+        </tr>
+
+        @foreach (var item in Tarea1.Global.Artistas)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.NombreCompleto</td>
+                <td>@item.FechaNacimiento</td>
+                <td><a class="btn btn-info" href="DetalleArtista?id=@item.Id">Detalle</a></td>
+
+            </tr>
+        }
+    </table>
+</div>
